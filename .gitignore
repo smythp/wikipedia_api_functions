@@ -1,0 +1,8 @@
+*~
+*#
+.#*
+*.pyc
+__pycache__/
+commit
+test.py
+.python-version
