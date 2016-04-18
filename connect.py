@@ -19,7 +19,10 @@ def get_title_from_search(string):
     
 
 def get_url_from_search(string):
-    article_title = wiki.find(string)[0]
+    try:
+        article_title = wiki.find(string)[0]
+    except IndexError:
+        return False
     article_contents = wiki.get_article(article_title)
     return article_contents.url
 
@@ -27,6 +30,8 @@ def get_url_from_search(string):
 # print(get_url_from_search('Stranger in a Strange Land'))
 
 def get_infobox_from_url(url):
+    if url == False:
+        return False
     hdr = {'User-Agent': 'Mozilla/5.0'}
     req = urllib2.Request(url,headers=hdr)
     page = urllib2.urlopen(req)
@@ -77,3 +82,6 @@ def get_infobox_category_from_search(string,category):
 # print(get_title_from_search('1984 (novel)'))
 
 # print(get_url_from_search('1984 (novel)'))
+
+
+# print(type(wiki.find('in the beginning was the command line')))
