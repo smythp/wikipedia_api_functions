@@ -14,7 +14,9 @@ wiki = WikiApi({ 'locale' : 'en'})
 
 #print(results)
 
-
+def get_title_from_search(string):
+    return wiki.find(string)[0]
+    
 
 def get_url_from_search(string):
     article_title = wiki.find(string)[0]
@@ -68,6 +70,10 @@ def get_infobox_category_from_search(string,category):
     except KeyError:
         return False
 
-print(get_infobox_category_from_search('Stranger in a Strange Land','Publication date'))
+# print(get_infobox_category_from_search('Stranger in a Strange Land','Publication date'))
 
 # print(get_infobox_from_search_string('Stranger in a Strange Land'))
+
+# print(get_title_from_search('1984 (novel)'))
+
+# print(get_url_from_search('1984 (novel)'))
