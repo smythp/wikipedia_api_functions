@@ -44,13 +44,17 @@ def get_infobox_from_url(url):
 
     for tr in table.find_all('tr'):
         if tr.find('th'):
-            key_gen = tr.find('th').text.rstrip().lstrip()
-            result[key_gen] = tr.find('td').text
+            try:
+                key_gen = tr.find('th').text.rstrip().lstrip()
+                result[key_gen] = tr.find('td').text
+            except AttributeError:
+                pass
         else:
             # the first row Logos fall here
             exceptional_row_count += 1
     if exceptional_row_count > 1:
         print 'WARNING ExceptionalRow>1: ', table
+        return False
     return result
 
 def get_infobox_from_search_string(string):
